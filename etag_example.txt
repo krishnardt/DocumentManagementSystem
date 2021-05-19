@@ -1,0 +1,1 @@
+curl -X PUT "http://127.0.0.1:8000/update?email=ravivarmaa0408%40gmail.com" -H  "accept: application/json" -H  "Content-Type: multipart/form-data" -H If-Match:"*" -F "in_file=@/home/spyder/Desktop/password.txt;type=text/plain"

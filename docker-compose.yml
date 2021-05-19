@@ -1,0 +1,24 @@
+version:  '3'
+services: 
+  database:
+    image: postgres
+    ports: 
+      - 5433:5432
+    environment: 
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=doc_service
+
+    
+
+  backend:
+    build: .
+    ports: 
+      - 8000:9000
+
+    environment: 
+      - DB_SERVER=database
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    links: 
+      - database
+    

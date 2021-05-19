@@ -1,0 +1,66 @@
+
+a. install the requirements.txt file
+b. run pilot file like: python pilot.py. you can open openapi docs with     
+   http://127.0.0.1:8000/docs.
+c. user authentication hasn't implementend here.
+d. when I tried running lockfile_testing.py file and tried upload, share API, 
+   I am getting locked, 423 status code.
+e. E-tag can be implemented to avoid uploading same files again and again.
+   Here, in this case, I am not able to manage using E-tag and If-Match
+f. I considered, updating file as file modification, threfore whenever a file
+   is updating, no other can update it..
+g. the previous downloads will get, pre-condition failed status.
+
+h. when the file is locked, if the owner wants to download it, owner can download
+   as the lock will breakdown.
+
+i. if in case, owner wants to update, when the user, uploading it, there is a
+   row-level lock, which given be access only once the current user done with it.
+
+------------------------
+DOcker:
+------
+j. Created DockerFile for the backend appliation.
+k. pulled the postgres imge from docker hub and tried to interact both the cotnainers
+   using docker compose.
+l. communication has not been able to establish between them due to port TCP/IP issue.
+
+
+
+
+Tech stack:
+1. FastAPI
+2. psycopg2
+3. PostgreSQL (it canbe replaces with SQLite)
+
+
+****All the static variables are being imported from CONSTANTS.py************
+
+features:
+Applied thread lock too.
+In our case, it is irrelevant as per my assumption and
+moved to row level locking. We can remove it at any point of time.
+
+
+row level locking will be locking the the row of a given file
+while updating the document.
+Though updating the document api is uploading the document, logically
+it is nothing but editing till the file is uploaded and all the 
+modifications in the File and Collaborator tables are updated.
+
+Implemented file locking too..
+
+
+I added a sleep time to check if the download works, during update with
+the above scenario, user not able to downlaod during the process
+of update api. The other user keeps on waiting for the resource till
+update api complete its functionality.(It is commented now)
+
+
+Will be adding file lock too...
+that means till the user is updating the file properties will be changed.
+In row level lokcing, user can do anything with physical file, but can't modify
+it through API. In this case, user neither modify it through API not physically.
+In this case, user don't need to wait till the resource is free. User will get
+instant response like, the resource is locked etc.,
+
