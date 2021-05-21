@@ -32,6 +32,7 @@ models.Base.metadata.create_all(bind=engine)
 
 #we can modify file_dir from CONSTANTS.py file
 file_dir = CONSTANTS.FILE_DIR
+print(file_dir)
 
 
 

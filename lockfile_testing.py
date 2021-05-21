@@ -1,5 +1,6 @@
 from lockfile import LockFile, LockTimeout
-filename= "/home/spyder/Documents/DocumentManagementService/BLOBS/password.txt"
+import CONSTANTS
+filename= CONSTANTS.FILE_DIR+"/password.txt"
 lock = LockFile(filename)
 #lock.break_lock()
 print(lock.i_am_locking())
